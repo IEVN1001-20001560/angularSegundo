@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 
 export default[
     {
-        path:'sign-in',
+        path:'sign-in' ,
         loadComponent: () =>import('./sing-in/sing-in.component'),
     },
     {

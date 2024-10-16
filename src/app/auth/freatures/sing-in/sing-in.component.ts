@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './sing-in.component.html',
   styles: ``
 })
-export default class SingInComponent {
+export default class SingInComponent  {
 
 }
