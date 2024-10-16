@@ -20,6 +20,7 @@ export class Ejemplo1Component implements OnInit{
     nombre:'',
     edad: 0,
     email:''
+    
   }
 
   constructor(private readonly fb: FormBuilder) {}
