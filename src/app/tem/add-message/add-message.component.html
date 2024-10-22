@@ -1,0 +1,19 @@
+<form (ngSubmit)="addAlumno()" #alumnoForm="ngForm">
+    <div>
+      <label for="alumno">Nombre del alumno:</label>
+      <input 
+        type="text" 
+        id="alumno" 
+        name="alumno" 
+        [(ngModel)]="alumno" 
+        required 
+        #alumnoInput="ngModel"
+      >
+      <div *ngIf="alumnoInput.invalid && alumnoInput.touched">
+        El nombre del alumno es obligatorio.
+      </div>
+    </div>
+    
+    <button type="submit" [disabled]="alumnoForm.invalid">Agregar Alumno</button>
+  </form>
+  

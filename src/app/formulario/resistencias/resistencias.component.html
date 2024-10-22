@@ -1,0 +1,81 @@
+<div class="container mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-4">Resistencias</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="calcular()" class="bg-white shadow-md rounded p-4">
+  <div class="mb-4">
+  <label for="color1" class="block text-sm font-medium">1era Banda:</label>
+  <select id="color1" formControlName="color1" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+  <option value="" disabled></option>
+  <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+  </select>
+  </div>
+   
+      <div class="mb-4">
+  <label for="color2" class="block text-sm font-medium">2da Banda:</label>
+  <select id="color2" formControlName="color2" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+  <option value="" disabled></option>
+  <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+  </select>
+  </div>
+   
+      <div class="mb-4">
+  <label for="color3" class="block text-sm font-medium">3era Banda:</label>
+  <select id="color3" formControlName="color3" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+  <option value="" disabled></option>
+  <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+  </select>
+  </div>
+   
+      <div class="mb-4">
+  <span class="block text-sm font-medium">Tolerancia:</span>
+  <div class="mt-1">
+  <label class="inline-flex items-center mr-4">
+  <input type="radio" formControlName="tolerancia" value="Oro" class="mr-2" /> Oro
+  </label>
+  <label class="inline-flex items-center">
+  <input type="radio" formControlName="tolerancia" value="Plata" class="mr-2" /> Plata
+  </label>
+  </div>
+  </div>
+   
+      <button type="submit" [disabled]="formGroup.invalid" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+        Validar
+  </button>
+  </form>
+   
+    <div class="mt-4">
+  <button type="button" (click)="subImprime()" class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700">
+        Imprimir
+  </button>
+  </div>
+   
+    <!-- Mostrar los resultados en forma de tabla con columnas -->
+  <div *ngIf="mostrarResultados" class="mt-6 bg-gray-100 rounded p-4">
+  <h2 class="text-lg font-bold mb-4">Resultados</h2>
+  <table class="table-auto w-full border-collapse border border-gray-400">
+  <thead>
+  <tr>
+  <th class="border border-gray-300 px-4 py-2 bg-gray-200">Descripción</th>
+  <th class="border border-gray-300 px-4 py-2 bg-gray-200">1era Banda</th>
+  <th class="border border-gray-300 px-4 py-2 bg-gray-200">2da Banda</th>
+  <th class="border border-gray-300 px-4 py-2 bg-gray-200">3era Banda</th>
+  <th class="border border-gray-300 px-4 py-2 bg-gray-200">Tolerancia</th>
+  <th class="border border-gray-300 px-4 py-2 bg-gray-200">Valor</th>
+  <th class="border border-gray-300 px-4 py-2 bg-gray-200">Valor Máximo</th>
+  <th class="border border-gray-300 px-4 py-2 bg-gray-200">Valor Mínimo</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td class="border border-gray-300 px-4 py-2">Resistencia</td>
+  <td class="border border-gray-300 px-4 py-2">{{ resistencias?.color1 }}</td>
+  <td class="border border-gray-300 px-4 py-2">{{ resistencias?.color2 }}</td>
+  <td class="border border-gray-300 px-4 py-2">{{ resistencias?.color3 }}</td>
+  <td class="border border-gray-300 px-4 py-2">{{ resistencias?.tolerancia }}</td>
+  <td class="border border-gray-300 px-4 py-2">{{ resistencias?.valor }} </td>
+  <td class="border border-gray-300 px-4 py-2">{{ resistencias?.valorMaximo }} </td>
+  <td class="border border-gray-300 px-4 py-2">{{ resistencias?.valorMinimo }} </td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
