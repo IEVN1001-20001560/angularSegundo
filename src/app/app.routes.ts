@@ -8,9 +8,5 @@ export const routes: Routes=[
     {
         path:'resistencias',
         loadChildren:() => import ('./formulario/resistencias/resistencias.routes')
-    },
-    {
-        path:'resistencias',
-        loadChildren:() => import ('./formulario/empleados/ejempleados.routes')
     }
 ];
