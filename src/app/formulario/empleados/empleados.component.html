@@ -1,0 +1,86 @@
+<body class="bg-gray-900 text-gray-200 p-8">
+    <div class="max-w-5xl mx-auto bg-gray-800 p-8 rounded-lg shadow-2xl">
+        <h1 class="text-3xl font-extrabold text-center mb-6 text-gray-100">Gestión de Empleados</h1>
+
+        <!-- Tabla -->
+        <div class="overflow-x-auto bg-gray-700 p-6 rounded-lg shadow-lg mb-8">
+            <table class="min-w-full bg-gray-800 border border-gray-600 text-sm">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-6 py-3 border">Matrícula</th>
+                        <th class="px-6 py-3 border">Nombre</th>
+                        <th class="px-6 py-3 border">Correo</th>
+                        <th class="px-6 py-3 border">Edad</th>
+                        <th class="px-6 py-3 border">Horas Trabajadas</th>
+                        <th class="px-6 py-3 border">Horas x Pagar</th>
+                        <th class="px-6 py-3 border">Horas Extras</th>
+                        <th class="px-6 py-3 border">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let empleado of listaEmpleados" class="hover:bg-gray-600">
+                        <td class="px-6 py-3 border">{{ empleado.matricula }}</td>
+                        <td class="px-6 py-3 border">{{ empleado.nombre }}</td>
+                        <td class="px-6 py-3 border">{{ empleado.correo }}</td>
+                        <td class="px-6 py-3 border">{{ empleado.edad }}</td>
+                        <td class="px-6 py-3 border">{{ empleado.horasTrabajadas }}</td>
+                        <td class="px-6 py-3 border">{{ empleado.horasPorPagar }}</td>
+                        <td class="px-6 py-3 border">{{ empleado.horasExtras }}</td>
+                        <td class="px-6 py-3 border">{{ empleado.subtotal | currency:'MXN':'symbol-narrow':'1.2-2' }}</td>
+                    </tr>
+                </tbody>
+                <tfoot class="bg-gray-700">
+                    <tr>
+                        <td colspan="7" class="text-right px-6 py-3 border font-semibold">Total a Pagar:</td>
+                        <td class="px-6 py-3 border text-center font-semibold">{{ totalPagar | currency:'MXN':'symbol-narrow':'1.2-2' }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Formulario -->
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-gray-100">Registrar Empleado</h2>
+                <form [formGroup]="formularioEmpleado" (ngSubmit)="onSubmit()">
+                    <div class="mb-4">
+                        <label for="matricula" class="block font-medium text-gray-200">Matrícula</label>
+                        <input type="text" id="matricula" formControlName="matricula" class="w-full p-3 border border-gray-600 rounded-lg bg-gray-800 text-gray-200" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="nombre" class="block font-medium text-gray-200">Nombre</label>
+                        <input type="text" id="nombre" formControlName="nombre" class="w-full p-3 border border-gray-600 rounded-lg bg-gray-800 text-gray-200" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="correo" class="block font-medium text-gray-200">Correo</label>
+                        <input type="email" id="correo" formControlName="correo" class="w-full p-3 border border-gray-600 rounded-lg bg-gray-800 text-gray-200" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="edad" class="block font-medium text-gray-200">Edad</label>
+                        <input type="number" id="edad" formControlName="edad" class="w-full p-3 border border-gray-600 rounded-lg bg-gray-800 text-gray-200" />
+                    </div>
+                    <div class="mb-6">
+                        <label for="horasTrabajadas" class="block font-medium text-gray-200">Horas trabajadas</label>
+                        <input type="number" id="horasTrabajadas" formControlName="horasTrabajadas" class="w-full p-3 border border-gray-600 rounded-lg bg-gray-800 text-gray-200" />
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700" [disabled]="!formularioEmpleado.valid">Registrar</button>
+                </form>
+            </div>
+
+            <!-- Botones Modificar y Eliminar -->
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg flex flex-col justify-center">
+                <div class="mb-6">
+                    <label for="matricula_modificar" class="block font-medium text-gray-200 mb-2">Matrícula a Modificar</label>
+                    <input type="text" id="matricula_modificar" class="w-full p-3 border border-gray-600 rounded-lg bg-gray-800 text-gray-200" />
+                </div>
+                <button (click)="modificarEmpleado()" class="w-full bg-yellow-500 text-white p-3 rounded-lg hover:bg-yellow-600 mb-4">Modificar</button>
+                <button (click)="eliminarEmpleado()" class="w-full bg-red-500 text-white p-3 rounded-lg hover:bg-red-600">Eliminar</button>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <button (click)="generarTabla()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 mr-4">Generar tabla</button>
+            <!-- <button (click)="imprimirTabla()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Imprimir tabla</button> -->
+        </div>
+    </div>
+</body>
